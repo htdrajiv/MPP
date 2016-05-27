@@ -14,7 +14,7 @@ public class MainClass {
 		orders.add(new Order(1,new Date(),100));
 		orders.add(new Order(2,new Date(),100));
 		
-		Employee emp3 = new Comissioned(100,orders);
+		Employee emp3 = new Comissioned(100,orders) ;
 		
 		System.out.println("The net pay of Hourly Employee "+emp1.calcCompensation(5, 2016).getNetPay());
 		System.out.println("The net pay of Salaried Employee "+ emp2.calcCompensation(5, 2016).getNetPay());
