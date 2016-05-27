@@ -4,46 +4,39 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Comissioned extends Employee{
-	Double comission;
-	Double baseSalary;
+	private double comission;
+	private double baseSalary;
 	
 	ArrayList<Order> order;
 	
-	public Double calcGrossPay(int month){		
-		Double totalGrossPayableAmount = 0.0;
+	public Comissioned(double baseSalary,ArrayList<Order> orders){
+		this.baseSalary = baseSalary;
+		this.order = orders;
+	}
+	
+	@Override
+	public double calcGrossPay(){		
+		double totalGrossPayableAmount = 0.0;
 		totalGrossPayableAmount += this.baseSalary;
-		totalGrossPayableAmount += totalOrderForThisMonth(month);
+		totalGrossPayableAmount += this.comission;
 		return totalGrossPayableAmount;
 	}
 	
 	@Override
 	public Paycheck calcCompensation(int month,int year){
-//		Double totalOrderAmount = totalOrderForThisMonth(month,year);
-		return new Paycheck(calcGrossPay(month));
+		double totalOrderAmount = totalOrderForThisMonth(month,year);
+		this.comission = totalOrderAmount * 0.01;
+		Paycheck paycheck = new Paycheck(calcGrossPay());
+		return paycheck;
 	}
 	
-	public Double totalOrderForThisMonth(int month,int year){
-		Double totalOrderAmount = 0.0;
+	public double totalOrderForThisMonth(int month,int year){
+		double totalOrderAmount = 0.0;
 		Calendar cal = Calendar.getInstance();
-		for(Order o : order){
-			cal.setTime(o.orderDate);
-			if(cal.MONTH==month && cal.YEAR==year){
-				totalOrderAmount += o.orderAmount;
-			}				
-		}
-		return totalOrderAmount;
-	}
-	
-	public Double totalOrderForThisMonth(int month){
-		Double totalOrderAmount = 0.0;
-		Calendar cal = Calendar.getInstance();
-		int currentMonth = month;
-		int currentYear = cal.YEAR;
-		
-		for(Order o : order){
-			cal.setTime(o.orderDate);
-			if(cal.MONTH==currentMonth && cal.YEAR==currentYear){
-				totalOrderAmount += o.orderAmount;
+		for(Order o : order){			
+			cal.setTime(o.getOrderDate());
+			if((cal.get(Calendar.MONTH))==month && cal.get(Calendar.YEAR)==year){
+				totalOrderAmount += o.getOrderAmount();
 			}				
 		}
 		return totalOrderAmount;

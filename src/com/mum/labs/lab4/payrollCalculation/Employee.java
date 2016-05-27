@@ -1,15 +1,17 @@
 package com.mum.labs.lab4.payrollCalculation;
 
 public abstract class Employee {
-	int empId;
+private int empID;
+
+public void print()
+{
 	
-	abstract Double calcGrossPay(int month);
-	
-	public Paycheck calcCompensation(int month,int year){
-		return new Paycheck(calcGrossPay(month));
-	}
-	
-	public void print(){
-		
-	}
+}
+public Paycheck calcCompensation(int month,int year)
+{
+	return new Paycheck(calcGrossPay());
+}
+
+public abstract double calcGrossPay();
+
 }
