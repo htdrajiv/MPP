@@ -1,5 +1,9 @@
 package com.mum.labs.lab5.problem1;
 
+import com.mum.labs.lab5.problem1.rulesets.RuleException;
+import com.mum.labs.lab5.problem1.rulesets.RuleSetFactory;
+import com.mum.labs.lab5.problem1.windows.AddressWindow;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
@@ -10,12 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
+import javax.swing.*;
 
 
 public class AddrWindow extends JFrame {
@@ -145,10 +144,21 @@ public class AddrWindow extends JFrame {
 			String state = stateField.getText();
 			String zip = zipField.getText();
 			String n = System.getProperty("line.separator");
-			String output = name + n + street + n + city + ", "+state+" "+zip;
-			System.out.println(output);
-			clearFields();
-			
+			RuleSet addressRules = RuleSetFactory.getRuleSet(AddrWindow.this);
+			try {
+				addressRules.applyRules(AddrWindow.this);
+				//if rules pass...
+				//submit data
+				String output = name + n + street + n + city + ", "+state+" "+zip;
+				System.out.println(output);
+				clearFields();
+			} catch(RuleException e) {
+				JOptionPane.showMessageDialog(AddrWindow.this,
+						"Error: "+e.getMessage(),
+						"Error",
+						JOptionPane.ERROR_MESSAGE);
+
+			}
 		}
 	}
 	public static void centerFrameOnDesktop(Component f) {

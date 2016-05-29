@@ -20,9 +20,9 @@ public class MainFrame extends JFrame {
 		mainPanel.add(profileButton);
 		getContentPane().add(mainPanel);
 		pack();
-		
+
 	}
-	
+
 	class AddressWindowListener implements ActionListener {
 		public void actionPerformed(ActionEvent evt){
 			addrWin.setVisible(true);
@@ -35,7 +35,7 @@ public class MainFrame extends JFrame {
 			profWin.setVisible(true);
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		(new MainFrame()).setVisible(true);
 	}
