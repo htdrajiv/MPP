@@ -8,7 +8,7 @@ public final  class BirthInfo {
 	
 	// no modifier makes package level access only
 	BirthInfo(LocalDate dob) {
-		dateOfBirth = dob;
+		this.dateOfBirth = dob;
 	}
 	// no modifier makes package level access only
 	void setPerson(Person person){

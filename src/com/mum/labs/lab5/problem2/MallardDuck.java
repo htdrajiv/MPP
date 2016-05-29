@@ -2,12 +2,12 @@ package com.mum.labs.lab5.problem2;
 
 public class MallardDuck extends Duck {
 	public MallardDuck(){
-		super.setFlyBehaviour(new FlyWithWings());
+		setFlyBehaviour();
 		setQuackBehaviour();
 	}
 	
 	public void setFlyBehaviour(){
-		
+		super.setFlyBehaviour(new FlyWithWings());
 	}
 	
 	public void setQuackBehaviour(){
