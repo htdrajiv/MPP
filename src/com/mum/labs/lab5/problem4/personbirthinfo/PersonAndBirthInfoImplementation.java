@@ -1,6 +1,6 @@
 package com.mum.labs.lab5.problem4.personbirthinfo;
 
-public class PersonAndBirthInfoImplementation implements PersonAndBirthInfo{
+public final class PersonAndBirthInfoImplementation implements PersonAndBirthInfo{
 	private Person person;
 	private BirthInfo birthInfo;
 	@Override

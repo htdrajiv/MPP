@@ -2,7 +2,7 @@ package com.mum.labs.lab5.problem4.personbirthinfo;
 
 import java.time.LocalDate;
 
-public class PersonBirthInfoFactory {
+public final class PersonBirthInfoFactory {
 	
 	public static PersonAndBirthInfo createPersonAndBirthInfo(String personName,LocalDate dateOfBirth){
 		Person person = new Person(personName);		
